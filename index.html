@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#a61d2e">
+  <meta name="description" content="Каталог научных и профессиональных репринтов с поиском, фильтрами, просмотром и скачиванием PDF.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Репринты">
+  <title>Библиотека репринтов</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#catalog">Перейти к каталогу</a>
+
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="Библиотека репринтов — на главную">
+        <img class="brand-logo" src="assets/ingal-logo.svg" alt="Ингал Косметикс">
+        <span class="brand-section"><strong>Научная библиотека</strong><small>репринты и публикации</small></span>
+      </a>
+      <nav class="header-actions" aria-label="Действия">
+        <button class="button button-quiet install-button" id="installButton" type="button">
+          <span aria-hidden="true">↓</span> Установить приложение
+        </button>
+        <button class="icon-button" id="aboutButton" type="button" aria-label="О проекте">i</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="shell ingal-hero">
+        <div class="hero-publication" aria-hidden="true">
+          <div class="publication-word">REPART</div>
+          <div class="publication-paper paper-back"></div>
+          <div class="publication-paper paper-main">
+            <span class="paper-label">SCIENTIFIC PUBLICATION</span>
+            <i></i><i></i><i></i>
+            <div class="paper-graph"><b></b><b></b><b></b><b></b></div>
+          </div>
+          <div class="molecule molecule-a"></div>
+          <div class="molecule molecule-b"></div>
+        </div>
+        <div class="hero-message">
+          <div class="hero-red">
+            <span>INGAL</span>
+            <strong>REPRINTS</strong>
+          </div>
+          <div class="hero-gray">
+            <p class="eyebrow">Профессиональная медиатека</p>
+            <h1>Научные публикации<br>и клинический опыт</h1>
+            <p class="hero-text">Единый каталог материалов по эстетической медицине: исследования, протоколы и статьи специалистов.</p>
+          </div>
+        </div>
+        <div class="hero-stats" aria-label="Статистика каталога">
+          <div><strong id="totalStat">52</strong><span>репринта</span></div>
+          <div><strong id="yearStat">7</strong><span>лет архива</span></div>
+          <div><strong id="journalStat">—</strong><span>изданий</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog-section" id="catalog">
+      <div class="shell">
+        <div class="catalog-heading">
+          <div>
+            <p class="eyebrow">Каталог</p>
+            <h2>Найдите нужный материал</h2>
+          </div>
+          <p id="resultCount" class="result-count" aria-live="polite"></p>
+        </div>
+
+        <div class="filter-panel" aria-label="Фильтры каталога">
+          <label class="search-field">
+            <span class="sr-only">Поиск</span>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+            <input id="searchInput" type="search" placeholder="Название, автор, препарат, журнал…" autocomplete="off">
+            <kbd>Ctrl K</kbd>
+          </label>
+          <div class="filter-grid">
+            <label><span>Год</span><select id="yearFilter"><option value="">Все годы</option></select></label>
+            <label><span>Издание</span><select id="journalFilter"><option value="">Все издания</option></select></label>
+            <label><span>Препарат</span><select id="medicineFilter"><option value="">Все препараты</option></select></label>
+            <label><span>Направление</span><select id="purposeFilter"><option value="">Все направления</option></select></label>
+            <label><span>Сортировка</span><select id="sortFilter"><option value="newest">Сначала новые</option><option value="oldest">Сначала старые</option><option value="title">По названию</option><option value="journal">По изданию</option></select></label>
+          </div>
+          <div class="active-filters" id="activeFilters" aria-live="polite"></div>
+        </div>
+
+        <div class="catalog-toolbar">
+          <span id="shownLabel"></span>
+          <button class="text-button" id="resetFilters" type="button">Сбросить фильтры</button>
+        </div>
+
+        <div class="card-grid" id="cardGrid"></div>
+        <div class="empty-state" id="emptyState" hidden>
+          <div aria-hidden="true">⌕</div>
+          <h3>Ничего не найдено</h3>
+          <p>Попробуйте изменить запрос или сбросить часть фильтров.</p>
+          <button class="button button-primary" type="button" id="emptyReset">Сбросить фильтры</button>
+        </div>
+
+        <div class="load-more-wrap">
+          <button class="button button-secondary" id="loadMore" type="button">Показать ещё</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand"><img src="assets/ingal-logo.svg" alt="Ингал Косметикс"><strong>Научная библиотека</strong></div>
+      <p>Каталог профессиональных публикаций по эстетической медицине.</p>
+      <p>PDF размещены на Google Drive.</p>
+    </div>
+  </footer>
+
+  <dialog class="viewer-dialog" id="viewerDialog">
+    <div class="viewer-shell">
+      <header class="viewer-header">
+        <div>
+          <span class="viewer-journal" id="viewerJournal"></span>
+          <h2 id="viewerTitle"></h2>
+        </div>
+        <button class="dialog-close" id="viewerClose" type="button" aria-label="Закрыть">×</button>
+      </header>
+      <div class="viewer-frame-wrap">
+        <div class="viewer-loader" id="viewerLoader">Загружаем PDF…</div>
+        <iframe id="viewerFrame" title="Просмотр PDF" allow="autoplay"></iframe>
+      </div>
+      <footer class="viewer-footer">
+        <p id="viewerMeta"></p>
+        <div>
+          <a class="button button-quiet" id="viewerOpen" target="_blank" rel="noopener">Открыть в Google Drive</a>
+          <a class="button button-primary" id="viewerDownload" target="_blank" rel="noopener" download>Скачать PDF</a>
+        </div>
+      </footer>
+    </div>
+  </dialog>
+
+  <dialog class="info-dialog" id="infoDialog">
+    <div class="info-card">
+      <button class="dialog-close" id="infoClose" type="button" aria-label="Закрыть">×</button>
+      <p class="eyebrow">О проекте</p>
+      <h2>Каталог работает без собственного сервера</h2>
+      <p>Сайт статический: каталог и интерфейс можно разместить на бесплатном хостинге. Оригиналы PDF открываются с Google Drive.</p>
+      <h3>Как установить на телефон</h3>
+      <ol>
+        <li><strong>Android / Chrome:</strong> нажмите «Установить приложение» или выберите «Добавить на главный экран» в меню браузера.</li>
+        <li><strong>iPhone / Safari:</strong> нажмите «Поделиться» → «На экран Домой».</li>
+      </ol>
+      <button class="button button-primary" id="infoDone" type="button">Понятно</button>
+    </div>
+  </dialog>
+
+  <template id="cardTemplate">
+    <article class="reprint-card">
+      <div class="card-topline"><span class="card-year"></span><span class="card-journal"></span></div>
+      <h3 class="card-title"></h3>
+      <p class="card-summary"></p>
+      <dl class="card-details">
+        <div><dt>Автор</dt><dd class="card-author"></dd></div>
+        <div><dt>Препараты</dt><dd class="card-medicines"></dd></div>
+        <div><dt>Выпуск</dt><dd class="card-issue"></dd></div>
+      </dl>
+      <div class="card-tags"></div>
+      <div class="card-actions">
+        <button class="button button-primary card-view" type="button">Просмотреть</button>
+        <a class="icon-download" target="_blank" rel="noopener" aria-label="Скачать PDF" title="Скачать PDF">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 20h14"/></svg>
+        </a>
+      </div>
+    </article>
+  </template>
+
+  <script src="data/reprints.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
