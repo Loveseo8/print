@@ -1110,7 +1110,7 @@ window.REPRINTS_DATA = [
     "summary": "Анатомически обоснована безопасная коррекция атрофических изменений лба препаратом Repart PLA; эффективность методики показана клинически и с помощью инструментального контроля.",
     "pdfFormat": "PDF, нестандартный, 224x311 мм, книжный, 9 стр.",
     "fileName": "Plast_Hir_2026_02_095.pdf",
-    "sourceUrl": "https://drive.google.com/drive/folders/1obTlSUJwecJRYqHkgdtJeDN0G_-xbhxG?usp=sharing"
+    "sourceUrl": "https://drive.google.com/file/d/1ki9zafStinSJzabnxAuICECfkHbZRlm2/view?usp=drive_link"
   },
   {
     "id": 54,
