@@ -51,7 +51,6 @@
     populateSelect(elements.medicine, unique(records.flatMap((record) => medicineTokens(record.medicines))));
     populateSelect(elements.purpose, unique(records.map((record) => record.purpose)));
     $("#totalStat").textContent = records.length;
-    $("#yearStat").textContent = unique(records.map((record) => record.year)).length;
     $("#journalStat").textContent = unique(records.map((record) => record.journal)).length;
   }
 
