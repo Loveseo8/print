@@ -1,4 +1,4 @@
-const CACHE = "ingal-reprints-pwa-v5";
+const CACHE = "ingal-reprints-pwa-v6";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -7,6 +7,7 @@ const APP_SHELL = [
   "./data/reprints.js",
   "./manifest.webmanifest",
   "./assets/ingal-logo.svg",
+  "./assets/hero-publication.png",
   "./assets/fonts/Gilroy-Regular.ttf",
   "./icons/icon.svg",
   "./icons/icon-192.png",
