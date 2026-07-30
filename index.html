@@ -15,6 +15,19 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="professional-gate" id="professionalGate" role="dialog" aria-modal="true" aria-labelledby="professionalGateTitle" aria-describedby="professionalGateDescription" tabindex="-1">
+    <div class="professional-gate-card">
+      <button class="professional-gate-close" id="professionalGateClose" type="button" aria-label="Закрыть и покинуть раздел">×</button>
+      <img class="professional-gate-logo" src="assets/ingal-logo.svg" alt="ИНГАЛ Косметикс">
+      <p id="professionalGateDescription">Данный раздел сайта доступен только для медицинских работников</p>
+      <h2 id="professionalGateTitle">Вы являетесь специалистом<br>в сфере здравоохранения?</h2>
+      <div class="professional-gate-actions">
+        <button class="professional-gate-yes" id="professionalGateYes" type="button">Да</button>
+        <button class="professional-gate-no" id="professionalGateNo" type="button">Нет</button>
+      </div>
+    </div>
+  </div>
+
   <a class="skip-link" href="#catalog">Перейти к каталогу</a>
 
   <header class="site-header">
