@@ -7,6 +7,8 @@
 
   const $ = (selector) => document.querySelector(selector);
   const elements = {
+    gate: $("#professionalGate"), gateYes: $("#professionalGateYes"), gateNo: $("#professionalGateNo"),
+    gateClose: $("#professionalGateClose"),
     grid: $("#cardGrid"), template: $("#cardTemplate"), count: $("#resultCount"), shown: $("#shownLabel"),
     empty: $("#emptyState"), loadMore: $("#loadMore"), search: $("#searchInput"), year: $("#yearFilter"),
     journal: $("#journalFilter"), medicine: $("#medicineFilter"), purpose: $("#purposeFilter"), sort: $("#sortFilter"),
@@ -15,6 +17,9 @@
     viewerMeta: $("#viewerMeta"), viewerOpen: $("#viewerOpen"), viewerDownload: $("#viewerDownload"), viewerClose: $("#viewerClose"),
     info: $("#infoDialog"), infoOpen: $("#aboutButton"), infoClose: $("#infoClose"), infoDone: $("#infoDone"),
   };
+
+  const PROFESSIONAL_GATE_KEY = "ingal-medical-professional-confirmed";
+  const EXIT_URL = "https://ingal-cosmetics.ru/";
 
   const normalize = (value) => String(value || "").toLocaleLowerCase("ru-RU").replace(/ё/g, "е").trim();
   const unique = (values) => [...new Set(values.filter(Boolean))].sort((a, b) => String(a).localeCompare(String(b), "ru"));
@@ -27,6 +32,45 @@
     const id = driveId(record.sourceUrl);
     return id ? `https://drive.google.com/uc?export=download&id=${id}` : record.sourceUrl;
   };
+
+  function initializeProfessionalGate() {
+    let confirmed = false;
+    try { confirmed = sessionStorage.getItem(PROFESSIONAL_GATE_KEY) === "yes"; } catch (_) {}
+
+    if (confirmed) {
+      elements.gate.hidden = true;
+      return;
+    }
+
+    document.body.classList.add("professional-gate-open");
+    const focusable = [elements.gateClose, elements.gateYes, elements.gateNo];
+
+    const leaveMedicalSection = () => window.location.replace(EXIT_URL);
+    const confirmProfessionalStatus = () => {
+      try { sessionStorage.setItem(PROFESSIONAL_GATE_KEY, "yes"); } catch (_) {}
+      elements.gate.hidden = true;
+      document.body.classList.remove("professional-gate-open");
+    };
+
+    elements.gateYes.addEventListener("click", confirmProfessionalStatus);
+    elements.gateNo.addEventListener("click", leaveMedicalSection);
+    elements.gateClose.addEventListener("click", leaveMedicalSection);
+    elements.gate.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const currentIndex = focusable.indexOf(document.activeElement);
+      const nextIndex = event.shiftKey
+        ? (currentIndex <= 0 ? focusable.length - 1 : currentIndex - 1)
+        : (currentIndex === focusable.length - 1 ? 0 : currentIndex + 1);
+      event.preventDefault();
+      focusable[nextIndex].focus();
+    });
+
+    requestAnimationFrame(() => elements.gate.focus());
+  }
 
   function medicineTokens(value) {
     if (!value || value === "—") return [];
@@ -211,6 +255,7 @@
     }
   }
 
+  initializeProfessionalGate();
   initializeFilters();
   bindEvents();
   render();
