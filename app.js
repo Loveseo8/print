@@ -74,7 +74,7 @@
 
   function medicineTokens(value) {
     if (!value || value === "—") return [];
-    const known = ["Repart PLA XL", "Repart PLA", "Repart PG", "Repart 5 Active", "Repart 6 Delicate", "Repart G Deep", "Repart G Normal", "Repart G", "Repart Supreme Hard", "Repart Supreme Medium", "Repart Supreme Soft", "Repart Supreme", "Repart Elegance Light", "DSA Black", "DeepSkinArt Black", "DSA", "Cleansing Foam DSA", "Oxygen Gel Mask DSA", "ReDexis", "proLIFE&SKIN"];
+    const known = ["Repart PLA XL", "Repart PLA", "Repart PG", "Repart 5 Active", "Repart 6 Delicate", "Repart G Deep", "Repart G Normal", "Repart G", "Repart Supreme Hard", "Repart Supreme Medium", "Repart Supreme Soft", "Repart Supreme", "DSA Black", "DeepSkinArt Black", "DSA Therapy", "Cleansing Foam DSA", "Oxygen Gel Mask DSA"];
     return known.filter((name) => normalize(value).includes(normalize(name))).filter((name, index, list) => !list.some((other, otherIndex) => otherIndex < index && normalize(other).includes(normalize(name))));
   }
 
