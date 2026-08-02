@@ -1,4 +1,4 @@
-const CACHE = "ingal-reprints-pwa-v9";
+const CACHE = "ingal-reprints-pwa-v10";
 const APP_SHELL = [
   "./",
   "./index.html",
